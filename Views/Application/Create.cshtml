@@ -1,0 +1,60 @@
+﻿@model Applications.Models.Employee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="row">
+    <div class="col-auto">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            
+            <div class=" card-columns">
+                <div class="form-group card-columns">
+                    <h6>Employee name</h6>
+                    <input asp-for="EmpName" class="form-control" />
+                    <span asp-validation-for="EmpName" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group card-columns">
+                    <h6>Department</h6>
+                    @Html.DropDownList("drpdept", new List<SelectListItem>
+                        {
+                        new SelectListItem{ Text="Admin", Value = "1" },
+                        new SelectListItem{ Text="Front Office", Value = "2" },
+                        new SelectListItem{ Text="Laboratory", Value = "3" },
+                        new SelectListItem{ Text="Radiology", Value = "4" },
+                        })
+                </div>
+                <br /><br /><br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<table class="table table-striped table-sm">
+    <thead>
+       <tr>
+           <th>
+               EmployeeName
+           </th>
+           <th>
+               DepartmentName
+           </th>
+       </tr>
+    </thead>
+    <tbody>
+       
+    </tbody>
+</table>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
